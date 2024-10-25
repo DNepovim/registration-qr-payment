@@ -2,7 +2,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { config } from "./config";
-import { getMemberPrice, getPaymentCategory } from "./utils/getMemberPrice";
+import { getMemberPaymentCatogory } from "./utils/getMemberPrice";
 import { Input } from "./components/Input";
 import { Toggler } from "./components/Toggler";
 import { Card } from "./components/Card";
@@ -115,11 +115,18 @@ export const App = () => {
                     label="Vedoucí"
                     {...register(`members.${i}.isLeader`)}
                   />
-                  <p>
+                  <p className="text-center">
                     <strong className="text-xl">
-                      {getMemberPrice(values.members, i).toLocaleString("cs")}
+                      {getMemberPaymentCatogory(
+                        values.members,
+                        i,
+                      )?.price.toLocaleString("cs")}
                       &nbsp;Kč
                     </strong>
+                    &nbsp;
+                    <div className="text-xs text-gray-700">
+                      {getMemberPaymentCatogory(values.members, i)?.name}
+                    </div>
                   </p>
                 </div>
                 {fields.length > 1 && (
