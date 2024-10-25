@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@tedyno/cz-qr-payment": "^1.0.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "react": "^18.3.1",

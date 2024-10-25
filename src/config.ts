@@ -1,7 +1,6 @@
 import { Members } from "./model/Member";
 
 interface Config {
-  accountNumberPrefix?: number;
   accountNumber: number;
   bankCode: number;
   specificSymbol?: 2024;
