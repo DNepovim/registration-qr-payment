@@ -9,6 +9,7 @@ import { Card } from "./components/Card";
 import { RemoveButton } from "./components/RemoveButton";
 import { QrCode } from "./components/QrCode";
 import { getFinalPrice } from "./utils/getFinalPrice";
+import { getReceiverMessage } from "./utils/getReceiverMessage";
 
 const memberSchema = z.object({
   name: z.string().min(1, { message: "Musíte zadat jméno." }),
@@ -201,17 +202,62 @@ export const App = () => {
           </div>
         </form>
 
-        {isValid && (
-          <>
-            <p className="text-xl">
-              Celková výše registrace je{" "}
-              <strong>
-                {getFinalPrice(values).toLocaleString("cs")}&nbsp;Kč
-              </strong>
-              .
-            </p>
-            <QrCode data={values} />
-          </>
+        <h2>Vaše platební údaje:</h2>
+        {isValid ? (
+          <div className="md:flex">
+            <div className="flex-[2]">
+              <table>
+                <colgroup>
+                  <col className="w-20 text-right" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td>Cena:</td>
+                    <td>
+                      <strong>
+                        {getFinalPrice(values).toLocaleString("cs")}&nbsp;Kč
+                      </strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Číslo účtu:</td>{" "}
+                    <td>
+                      <strong>{config.accountNumber}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>VS:</td>
+                    <td>
+                      <strong>{values.members[0].birth}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SS:</td>
+                    <td>
+                      <strong>{config.specificSymbol}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Zpráva pro příjmece:</td>
+                    <td>
+                      <strong className="whitespace-pre-line">
+                        {getReceiverMessage(values)}
+                      </strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="flex flex-[1] items-start justify-center p-2">
+              <QrCode data={values} />
+            </div>
+          </div>
+        ) : (
+          <div
+            className={`flex w-full flex-col items-center justify-center rounded-lg border-4 border-dashed border-orange-950 border-opacity-50 p-10 text-xl text-orange-950`}
+          >
+            Po vyplnění všech údajů se zde zobrazí platební údaje.
+          </div>
         )}
       </div>
     </main>
