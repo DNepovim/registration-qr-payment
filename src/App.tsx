@@ -194,7 +194,7 @@ export const App = () => {
             )}
             {values.gift && (
               <Toggler
-                label="Chci být uvden jako dárce na webu střediska"
+                label="Chci být uveden jako dárce na webu střediska"
                 {...register("wantBeOnWeb")}
               />
             )}
