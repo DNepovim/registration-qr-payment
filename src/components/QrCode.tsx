@@ -14,7 +14,7 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
     ACC: config.accountNumber,
     AM: getFinalPrice(data),
     CC: config.currency,
-    MSG: getReceiverMessage(data),
+    MSG: getReceiverMessage(data, true),
     "X-SS": config.specificSymbol,
     "X-VS": data.members[0].birth,
   };

@@ -236,7 +236,7 @@ export const App = () => {
                     <td>Zpráva pro příjemce: </td>
                     <td>
                       <strong className="whitespace-pre-line">
-                        {getReceiverMessage(values)}
+                        {getReceiverMessage(values, false)}
                       </strong>
                     </td>
                   </tr>
