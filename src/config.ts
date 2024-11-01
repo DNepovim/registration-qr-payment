@@ -3,7 +3,7 @@ import { Members } from "./model/Member";
 interface Config {
   accountNumber: string;
   recipientName: string;
-  specificSymbol?: 2024;
+  specificSymbol: number;
   currency: string;
   paymentsCategories: Members;
   gifts: number[];
@@ -12,7 +12,7 @@ interface Config {
 export const config: Config = {
   accountNumber: "CZ3220100000002801050859",
   recipientName: "Střelka",
-  specificSymbol: 2024,
+  specificSymbol: 2025,
   currency: "CZK",
   paymentsCategories: [
     {
