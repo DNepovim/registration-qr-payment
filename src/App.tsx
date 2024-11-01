@@ -10,6 +10,8 @@ import { RemoveButton } from "./components/RemoveButton";
 import { QrCode } from "./components/QrCode";
 import { getFinalPrice } from "./utils/getFinalPrice";
 import { getReceiverMessage } from "./utils/getReceiverMessage";
+import { Accordion } from "./components/Accordion";
+import { H2 } from "./components/H2";
 
 const memberSchema = z.object({
   name: z.string().min(1, { message: "Musíte zadat jméno." }),
@@ -18,13 +20,13 @@ const memberSchema = z.object({
     .min(1, { message: "Musíte zadat rodné číslo." })
     .min(6, { message: "Rodné číslo musí mít 6 číslic." }),
   isLeader: z.boolean().default(false),
+  isSponsor: z.boolean().default(false),
 });
 
 export type FormMember = z.infer<typeof memberSchema>;
 
 const schema = z.object({
   members: z.array(memberSchema),
-  gift: z.coerce.number().optional(),
   wantGiftConfirmation: z.boolean().optional(),
   wantBeOnWeb: z.boolean().optional(),
 });
@@ -38,11 +40,12 @@ export const App = () => {
     handleSubmit,
     formState: { errors, isValid },
     watch,
-    setValue,
   } = useForm<FormSchema>({
     mode: "all",
     resolver: zodResolver(schema),
-    defaultValues: { members: [{ name: "", isLeader: false }] },
+    defaultValues: {
+      members: [{ name: "", isLeader: false, isSponsor: false }],
+    },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -52,47 +55,69 @@ export const App = () => {
 
   const values = watch();
 
+  const isSponsor = values.members.some((m) => m.isSponsor);
+
   return (
     <main className="prose prose-neutral h-full min-h-screen w-screen max-w-none bg-bg">
       <div className="mx-auto max-w-4xl rounded-md p-4">
-        <h1>Registrace na rok 2025</h1>
-        <p>
+        <h1 className="m-0 font-head text-orange-950">
+          Registrace na rok 2025
+        </h1>
+        <p className="m-0 mb-4">
           Skautské středisko Střelka Kralupy nad Vltavou,{" "}
           <a href="https://www.strelka.cz" target="_blank">
             www.strelka.cz
           </a>
           .
         </p>
-        <p>
-          Finanční prostředky získané v rámci registrace naše středisko použije
-          zejména na následující položky:
-        </p>
-        <ul>
-          <li>
-            povinné odvody vyšším organizačním jednotkám v rámci celostátní
-            organizace Junák - český skaut, z. s.;
-          </li>
-          <li>
-            provozní náklady střediskových základen, zejména energie, údržba a
-            drobné opravy: skautský dům Bára v Kralupech, chata Dřevomorka v
-            Lužických horách a táborová základna Puchverk v Pošumaví;
-          </li>
-          <li>
-            obnova a doplnění zejména táborového vybavení (teepee, plachty na
-            kuchyň apod.) pro bezproblémové zajištění letních táborů na Střele;
-          </li>
-          <li>
-            část celkové rekonstrukce chaty Dřevomorka jejíž předmětem je
-            celková elektroinstalace, hydroizolace, nevyhovující části střechy a
-            částečně i vybavení interiéru.
-          </li>
-        </ul>
+        <Accordion title="Na co budou peníze z registrace využity?">
+          <p className="mb-2 mt-0">
+            Finanční prostředky získané v rámci registrace naše středisko
+            použije zejména na následující položky:
+          </p>
+          <ul className="not-prose mb-4 list-disc pl-4">
+            <li>
+              povinné odvody vyšším organizačním jednotkám v rámci celostátní
+              organizace Junák - český skaut, z. s.;
+            </li>
+            <li>
+              provozní náklady střediskových základen, zejména energie, údržba a
+              drobné opravy: skautský dům Bára v Kralupech, chata Dřevomorka v
+              Lužických horách a táborová základna Puchverk v Pošumaví;
+            </li>
+            <li>
+              obnova a doplnění zejména táborového vybavení (teepee, plachty na
+              kuchyň apod.) pro bezproblémové zajištění letních táborů na
+              Střele;
+            </li>
+            <li>
+              část celkové rekonstrukce chaty Dřevomorka jejíž předmětem je
+              celková elektroinstalace, hydroizolace, nevyhovující části střechy
+              a částečně i vybavení interiéru.
+            </li>
+          </ul>
+        </Accordion>
+        <Accordion title="Sponzorský dar">
+          <p className="mt-0">
+            Vzhledem k výše zmíněné potřebě velké rekonstrukce chaty Dřevomorka,
+            kde naše oddíly tráví víkendové výpravy i Silvestrovské a
+            Velikonoční akce a slouží i jako táborová základna pro naše
+            nejmladší členy, zavádíme nově Sponzorské členství. Rekonstrukci
+            nejsme schopni ufinancovat z běžných vlastních příjmů, proto žádáme
+            o různé dotační programy a rozhodli jsme se i pro tuto formu získání
+            finančních prostředků. Zda se rozhodnete pro sponzorské členství je
+            čistě na vás, budeme za něj však velice vděčni. Samozřejmostí je
+            vystavení potvrzení o sponzorském daru, po domluvě vás rádi uvedeme
+            i na našich webových stránkách. Zároveň se můžete těšit na drobné
+            překvapení, které vám společně zašleme.
+          </p>
+        </Accordion>
         <form onSubmit={handleSubmit(() => {})}>
-          <h2>Členové</h2>
+          <H2 className="mt-4">Členové:</H2>
           <div className="grid gap-4 md:grid-cols-3">
             {fields.map(({ id }, i) => (
               <Card key={id}>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                   <Input
                     label="Jméno a příjmení"
                     {...register(`members.${i}.name`)}
@@ -115,9 +140,15 @@ export const App = () => {
                   <Toggler
                     label="Vedoucí"
                     {...register(`members.${i}.isLeader`)}
+                    disabled={values.members[i].isSponsor}
+                  />
+                  <Toggler
+                    label="Sponzor"
+                    {...register(`members.${i}.isSponsor`)}
+                    disabled={values.members[i].isLeader}
                   />
                   <p className="text-center">
-                    <strong className="text-xl">
+                    <strong className="text-2xl">
                       {getMemberPaymentCatogory(
                         values.members,
                         i,
@@ -125,23 +156,28 @@ export const App = () => {
                       &nbsp;Kč
                     </strong>
                     &nbsp;
-                    <div className="text-xs text-gray-700">
+                    <div className="text-s text-gray-700">
                       {getMemberPaymentCatogory(values.members, i)?.name}
                     </div>
                   </p>
                 </div>
                 {fields.length > 1 && (
                   <RemoveButton
-                    className="justify-self-end"
+                    className="self-end justify-self-end"
                     onClick={() => remove(i)}
-                  >
-                    Odebrat
-                  </RemoveButton>
+                  />
                 )}
               </Card>
             ))}
             <Card
-              onClick={() => append({ name: "", birth: "", isLeader: false })}
+              onClick={() =>
+                append({
+                  name: "",
+                  birth: "",
+                  isLeader: false,
+                  isSponsor: false,
+                })
+              }
             >
               <div className="flex h-full w-full flex-col items-center justify-center">
                 <div className="text-8xl">+</div>
@@ -149,64 +185,27 @@ export const App = () => {
               </div>
             </Card>
           </div>
-          <h2 className="mb-2">Sponzorský dar</h2>
-          <p className="text-sm">
-            Vzhledem k výše zmíněné potřebě velké rekonstrukce chaty Dřevomorka,
-            kde naše oddíly tráví víkendové výpravy i Silvestrovské a
-            Velikonoční akce a slouží i jako táborová základna pro naše
-            nejmladší členy, zavádíme nově Sponzorské členství. Rekonstrukci
-            nejsme schopni ufinancovat z běžných vlastních příjmů, proto žádáme
-            o různé dotační programy a rozhodli jsme se i pro tuto formu získání
-            finančních prostředků. Zda se rozhodnete pro sponzorské členství je
-            čistě na vás, budeme za něj však velice vděčni. Samozřejmostí je
-            vystavení potvrzení o sponzorském daru, po domluvě vás rádi uvedeme
-            i na našich webových stránkách. Zároveň se můžete těšit na drobné
-            překvapení, které vám společně zašleme.
-          </p>
-          <div className="flex flex-col gap-4 md:flex-row">
-            {config.gifts.map((g) => (
-              <label
-                key={g}
-                className={`flex min-w-10 flex-1 cursor-pointer justify-center rounded-lg border-4 border-orange-950 border-opacity-50 px-4 py-1 text-xl font-bold text-orange-950 ${Number(values.gift) === g ? "border-solid bg-orange-950 bg-opacity-50 text-white" : "border-dashed"}`}
-              >
-                <input
-                  hidden
-                  key={g}
-                  {...register("gift", {
-                    valueAsNumber: true,
-                    onChange: (e) => {
-                      const v = Number(e.target.value);
-                      setValue("gift", v === values.gift ? undefined : v);
-                    },
-                  })}
-                  type="radio"
-                  value={g}
-                />
-                {g}
-              </label>
-            ))}
-          </div>
           <div className="mt-8 flex flex-col gap-2">
-            {values.gift && (
-              <Toggler
-                label="Chci potvrzení o daru"
-                {...register("wantGiftConfirmation")}
-              />
-            )}
-            {values.gift && (
-              <Toggler
-                label="Chci být uveden jako dárce na webu střediska"
-                {...register("wantBeOnWeb")}
-              />
+            {isSponsor && (
+              <>
+                <Toggler
+                  label="Chci potvrzení o daru"
+                  {...register("wantGiftConfirmation")}
+                />
+                <Toggler
+                  label="Chci být uveden jako dárce na webu střediska"
+                  {...register("wantBeOnWeb")}
+                />
+              </>
             )}
           </div>
         </form>
 
-        <h2>Vaše platební údaje:</h2>
+        <H2>Vaše platební údaje:</H2>
         {isValid ? (
           <div className="md:flex">
             <div className="flex-[2]">
-              <table>
+              <table className="m-0">
                 <colgroup>
                   <col className="w-20 text-right" />
                 </colgroup>

@@ -1,6 +1,6 @@
 import { FormMember } from "../App";
 import { config } from "../config";
-import { isDefaultMember, isLeaderMember, isRestMember } from "../model/Member";
+import { isDefaultMember, isLeaderMember, isRestMember, isSponsorMember } from "../model/Member";
 
 export const getMemberPaymentCatogory = (
   members: FormMember[],
@@ -14,8 +14,14 @@ export const getMemberPaymentCatogory = (
     return leaderMember ?? defaultMember;
   }
 
+
+  if (member.isSponsor) {
+    const leaderMember = config.paymentsCategories.find(isSponsorMember);
+    return leaderMember ?? defaultMember;
+  }
+
   const countOfLeadersAfter = members.reduce(
-    (acc, m, i) => (m.isLeader && i > index ? acc + 1 : acc),
+    (acc, m, i) => ((m.isLeader || m.isSponsor) && i > index ? acc + 1 : acc),
     0,
   );
 

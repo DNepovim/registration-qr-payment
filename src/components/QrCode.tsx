@@ -20,6 +20,7 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
   );
   return (
     <img
+      className="rounded-lg"
       src={`data:image/svg+xml;utf8,${encodeURIComponent(qrPayment.getSvg())}`}
       alt="QR platba"
     />

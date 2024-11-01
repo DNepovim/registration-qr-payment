@@ -6,4 +6,4 @@ export const getFinalPrice = (data: FormSchema): number =>
     (acc, _, i) =>
       acc + (getMemberPaymentCatogory(data.members, i)?.price ?? 0),
     0,
-  ) + (data.gift ?? 0);
+  );

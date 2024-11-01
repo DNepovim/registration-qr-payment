@@ -35,6 +35,11 @@ export const config: Config = {
       isLeader: true,
       price: 1000,
     },
+    {
+      name: "Sponzor",
+      isSponsor: true,
+      price: 5000,
+    },
   ],
   gifts: [500, 1000, 1500, 2000],
 };
