@@ -1,8 +1,7 @@
 import { Members } from "./model/Member";
 
 interface Config {
-  accountNumber: number;
-  bankCode: number;
+  accountNumber: string;
   specificSymbol?: 2024;
   currency: string;
   paymentsCategories: Members;
@@ -10,8 +9,7 @@ interface Config {
 }
 
 export const config: Config = {
-  accountNumber: 2801050859,
-  bankCode: 2010,
+  accountNumber: "CZ3220100000002801050859",
   specificSymbol: 2024,
   currency: "CZK",
   paymentsCategories: [

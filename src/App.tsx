@@ -12,6 +12,7 @@ import { getFinalPrice } from "./utils/getFinalPrice";
 import { getReceiverMessage } from "./utils/getReceiverMessage";
 import { Accordion } from "./components/Accordion";
 import { H2 } from "./components/H2";
+import { ErrorBoundary } from "react-error-boundary";
 
 const memberSchema = z.object({
   name: z.string().min(1, { message: "Musíte zadat jméno." }),
@@ -156,9 +157,9 @@ export const App = () => {
                       &nbsp;Kč
                     </strong>
                     &nbsp;
-                    <div className="text-s text-gray-700">
+                    <span className="text-s text-gray-700">
                       {getMemberPaymentCatogory(values.members, i)?.name}
-                    </div>
+                    </span>
                   </p>
                 </div>
                 {fields.length > 1 && (
@@ -219,7 +220,7 @@ export const App = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Číslo účtu:</td>{" "}
+                    <td>Číslo účtu:</td>
                     <td>
                       <strong>{config.accountNumber}</strong>
                     </td>
@@ -237,7 +238,7 @@ export const App = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Zpráva pro příjmece:</td>
+                    <td>Zpráva pro příjemce:</td>
                     <td>
                       <strong className="whitespace-pre-line">
                         {getReceiverMessage(values)}
@@ -248,7 +249,11 @@ export const App = () => {
               </table>
             </div>
             <div className="flex flex-[1] items-start justify-center p-2">
-              <QrCode data={values} />
+              <ErrorBoundary
+                fallback={<p>QR kód se nepodařilo vygenerovat.</p>}
+              >
+                <QrCode data={values} />
+              </ErrorBoundary>
             </div>
           </div>
         ) : (

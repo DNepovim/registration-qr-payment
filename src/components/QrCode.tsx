@@ -1,28 +1,41 @@
+import { useEffect, useState } from "react";
 import { FormSchema } from "../App";
 import { config } from "../config";
 import { getFinalPrice } from "../utils/getFinalPrice";
 import { getReceiverMessage } from "../utils/getReceiverMessage";
-import { QRPayment } from "@tedyno/cz-qr-payment";
+import qrcode from "qrcode";
 
 export interface QrCodeProps {
   data: FormSchema;
 }
 
 export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
-  const qrPayment = new QRPayment(
-    getFinalPrice(data),
-    `${config.accountNumber}/${config.bankCode}`,
-    {
-      message: getReceiverMessage(data),
-      SS: String(config.specificSymbol),
-      VS: data.members[0].birth,
-    },
-  );
-  return (
-    <img
-      className="rounded-lg"
-      src={`data:image/svg+xml;utf8,${encodeURIComponent(qrPayment.getSvg())}`}
-      alt="QR platba"
-    />
+  const paymentDescription = {
+    ACC: config.accountNumber,
+    AM: getFinalPrice(data),
+    CC: config.currency,
+    MSG: getReceiverMessage(data),
+    "X-SS": config.specificSymbol,
+    "X-VS": data.members[0].birth,
+  };
+
+  const spaidString = `SPD*1.0*${Object.entries(paymentDescription)
+    .map(([key, value]) => `${key}:${value}`)
+    .join("*")}`;
+
+  const [qrUrl, setQrUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const url = await qrcode.toDataURL(spaidString);
+      console.log(url);
+      setQrUrl(url);
+    })();
+  }, [spaidString]);
+
+  return qrUrl ? (
+    <img className="rounded-lg" src={qrUrl} alt="QR platba" />
+  ) : (
+    "Načítám QR kód..."
   );
 };
