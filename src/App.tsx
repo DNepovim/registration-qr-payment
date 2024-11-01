@@ -157,7 +157,7 @@ export const App = () => {
                       &nbsp;Kč
                     </strong>
                     &nbsp;
-                    <span className="text-s text-gray-700">
+                    <span className="block text-s text-gray-700">
                       {getMemberPaymentCatogory(values.members, i)?.name}
                     </span>
                   </p>
@@ -186,33 +186,28 @@ export const App = () => {
               </div>
             </Card>
           </div>
-          <div className="mt-8 flex flex-col gap-2">
-            {isSponsor && (
-              <>
-                <Toggler
-                  label="Chci potvrzení o daru"
-                  {...register("wantGiftConfirmation")}
-                />
-                <Toggler
-                  label="Chci být uveden jako dárce na webu střediska"
-                  {...register("wantBeOnWeb")}
-                />
-              </>
-            )}
-          </div>
+          {isSponsor && (
+            <div className="mt-6 flex flex-col gap-2">
+              <Toggler
+                label="Chci potvrzení o daru"
+                {...register("wantGiftConfirmation")}
+              />
+              <Toggler
+                label="Chci být uveden jako dárce na webu střediska"
+                {...register("wantBeOnWeb")}
+              />
+            </div>
+          )}
         </form>
 
-        <H2>Vaše platební údaje:</H2>
+        <H2 className="mt-4">Vaše platební údaje:</H2>
         {isValid ? (
           <div className="md:flex">
             <div className="flex-[2]">
               <table className="m-0">
-                <colgroup>
-                  <col className="w-20 text-right" />
-                </colgroup>
                 <tbody>
                   <tr>
-                    <td>Cena:</td>
+                    <td>Cena: </td>
                     <td>
                       <strong>
                         {getFinalPrice(values).toLocaleString("cs")}&nbsp;Kč
@@ -220,25 +215,25 @@ export const App = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Číslo účtu:</td>
+                    <td>Číslo účtu: </td>
                     <td>
                       <strong>{config.accountNumber}</strong>
                     </td>
                   </tr>
                   <tr>
-                    <td>VS:</td>
+                    <td>VS: </td>
                     <td>
                       <strong>{values.members[0].birth}</strong>
                     </td>
                   </tr>
                   <tr>
-                    <td>SS:</td>
+                    <td>SS: </td>
                     <td>
                       <strong>{config.specificSymbol}</strong>
                     </td>
                   </tr>
                   <tr>
-                    <td>Zpráva pro příjemce:</td>
+                    <td>Zpráva pro příjemce: </td>
                     <td>
                       <strong className="whitespace-pre-line">
                         {getReceiverMessage(values)}
