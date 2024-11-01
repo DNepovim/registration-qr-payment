@@ -10,14 +10,18 @@ export interface QrCodeProps {
 }
 
 export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
+  const MSG = getReceiverMessage(data, true);
+
   const paymentDescription = {
     ACC: config.accountNumber,
     AM: getFinalPrice(data),
     CC: config.currency,
-    MSG: getReceiverMessage(data, true),
+    MSG,
     "X-SS": config.specificSymbol,
     "X-VS": data.members[0].birth,
   };
+
+  console.log("MSG", MSG, MSG.length);
 
   const spaidString = `SPD*1.0*${Object.entries(paymentDescription)
     .map(([key, value]) => `${key}:${value}`)
@@ -28,7 +32,6 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
   useEffect(() => {
     (async () => {
       const url = await qrcode.toDataURL(spaidString);
-      console.log(url);
       setQrUrl(url);
     })();
   }, [spaidString]);
