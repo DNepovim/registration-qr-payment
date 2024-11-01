@@ -7,7 +7,7 @@ export const getReceiverMessage = (data: FormSchema) => {
 	].filter(Boolean);
 
     return [
-        data.members.map((m) => `${m.name} (${m.birth})${m.isLeader ? " - činovník" : m.isSponsor ? " - sponzor" : ""}`).join(", ") + ".",
-        wanted.length ? ` Chci ${wanted.join(" a ")}.` : "",
-    ].join("");
+        data.members.map((m) => `${m.name} (${m.birth}${m.isLeader ? ", činovník" : m.isSponsor ? ", sponzor" : ""})`).join("\n"),
+        wanted.length ? `Chci ${wanted.join(" a ")}.` : "",
+    ].join("\n");
 };
