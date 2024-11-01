@@ -2,7 +2,7 @@ import { FormMember } from "../App";
 import { config } from "../config";
 import { isDefaultMember, isLeaderMember, isRestMember, isSponsorMember } from "../model/Member";
 
-export const getMemberPaymentCatogory = (
+export const getMemberPaymentCategory = (
   members: FormMember[],
   index: number,
 ) => {

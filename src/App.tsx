@@ -2,7 +2,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { config } from "./config";
-import { getMemberPaymentCatogory } from "./utils/getMemberPrice";
+import { getMemberPaymentCategory } from "./utils/getMemberPrice";
 import { Input } from "./components/Input";
 import { Toggler } from "./components/Toggler";
 import { Card } from "./components/Card";
@@ -150,7 +150,7 @@ export const App = () => {
                   />
                   <p className="text-center">
                     <strong className="text-2xl">
-                      {getMemberPaymentCatogory(
+                      {getMemberPaymentCategory(
                         values.members,
                         i,
                       )?.price.toLocaleString("cs")}
@@ -158,7 +158,7 @@ export const App = () => {
                     </strong>
                     &nbsp;
                     <span className="block text-s text-gray-700">
-                      {getMemberPaymentCatogory(values.members, i)?.name}
+                      {getMemberPaymentCategory(values.members, i)?.name}
                     </span>
                   </p>
                 </div>
