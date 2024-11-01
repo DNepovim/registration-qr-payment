@@ -6,7 +6,6 @@ interface Config {
   specificSymbol: number;
   currency: string;
   paymentsCategories: Members;
-  gifts: number[];
 }
 
 export const config: Config = {
@@ -41,5 +40,4 @@ export const config: Config = {
       price: 5000,
     },
   ],
-  gifts: [500, 1000, 1500, 2000],
 };
