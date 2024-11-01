@@ -27,7 +27,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {...props}
         ref={ref}
       />
-      <p className="m-0 min-h-4 text-sm leading-4 text-red-500">{error} </p>
+      <p className="mt-1 m-0 min-h-4 text-sm leading-4 text-red-500">{error} </p>
     </label>
   ),
 );
