@@ -1,9 +1,9 @@
 import { FormSchema } from "../App";
-import { getMemberPaymentCatogory } from "./getMemberPrice";
+import { getMemberPaymentCategory } from "./getMemberPrice";
 
 export const getFinalPrice = (data: FormSchema): number =>
   data.members.reduce(
     (acc, _, i) =>
-      acc + (getMemberPaymentCatogory(data.members, i)?.price ?? 0),
+      acc + (getMemberPaymentCategory(data.members, i)?.price ?? 0),
     0,
   );
