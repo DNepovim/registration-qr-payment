@@ -19,10 +19,10 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
     CC: config.currency,
     MSG,
     "X-SS": config.specificSymbol,
-    "X-VS": data.members[0].birth,
+    ...(data.members.length === 1 ? { "X-VS": data.members[0].birth } : {}),
   };
 
-  console.log("MSG", MSG, MSG.length);
+  console.log(MSG, MSG.length);
 
   const spaidString = `SPD*1.0*${Object.entries(paymentDescription)
     .map(([key, value]) => `${key}:${value}`)
