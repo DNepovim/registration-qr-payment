@@ -34,7 +34,7 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
   }, [spaidString]);
 
   return qrUrl ? (
-    <img className="rounded-lg" src={qrUrl} alt="QR platba" />
+    <img className="rounded-lg m-0" src={qrUrl} alt="QR platba" />
   ) : (
     "Načítám QR kód..."
   );
