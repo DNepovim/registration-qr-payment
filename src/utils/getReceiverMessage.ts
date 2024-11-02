@@ -22,7 +22,7 @@ export const getReceiverMessage = (data: FormSchema) => {
     return message;
   }
 
-  return [
+  const shortMessage = [
     data.members
       .map(
         (m) =>
@@ -38,4 +38,10 @@ export const getReceiverMessage = (data: FormSchema) => {
   ]
     .filter(Boolean)
     .join(", ");
+
+  if (shortMessage.length > 140) {
+    return shortMessage.substring(0, 135) + "...";
+  }
+
+  return shortMessage;
 };
