@@ -19,7 +19,7 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
     CC: config.currency,
     MSG,
     "X-SS": config.specificSymbol,
-    ...(data.members.length === 1 ? { "X-VS": data.members[0].birth } : {}),
+    "X-VS": data.members[0].birth,
   };
 
   console.log(MSG, MSG.length);

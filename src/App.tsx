@@ -220,14 +220,12 @@ export const App = () => {
                       <strong>{config.accountNumber}</strong>
                     </td>
                   </tr>
-                  {values.members.length === 1 ? (
-                    <tr>
-                      <td>VS: </td>
-                      <td>
-                        <strong>{values.members[0].birth}</strong>
-                      </td>
-                    </tr>
-                  ) : null}
+                  <tr>
+                    <td>VS: </td>
+                    <td>
+                      <strong>{values.members[0].birth}</strong>
+                    </td>
+                  </tr>
                   <tr>
                     <td>SS: </td>
                     <td>
