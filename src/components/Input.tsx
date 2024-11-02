@@ -3,10 +3,10 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface InputProps
   extends UseFormRegisterReturn,
-  Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "name" | "onBlur" | "onChange"
-  > {
+    Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "name" | "onBlur" | "onChange"
+    > {
   label?: string;
   description?: string;
   error?: string;
@@ -28,9 +28,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
       />
       {error ? (
-        <p className="mt-1 m-0 min-h-4 text-sm leading-4 text-red-500">{error}</p>
+        <p className="m-0 mt-1 min-h-4 text-sm leading-4 text-red-500">
+          {error}
+        </p>
       ) : (
-        <p className="mt-1 m-0 min-h-4 text-sm leading-4 text-red-500 hidden sm:block">&nbsp;</p>
+        <p className="m-0 mt-1 hidden min-h-4 text-sm leading-4 text-red-500 sm:block">
+          &nbsp;
+        </p>
       )}
     </label>
   ),

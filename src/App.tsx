@@ -148,7 +148,7 @@ export const App = () => {
                     {...register(`members.${i}.isSponsor`)}
                     disabled={values.members[i].isLeader}
                   />
-                  <p className="text-center mt-2 mb-0 sm:mt-4">
+                  <p className="mb-0 mt-2 text-center sm:mt-4">
                     <strong className="text-2xl">
                       {getMemberPaymentCategory(
                         values.members,
@@ -157,14 +157,14 @@ export const App = () => {
                       &nbsp;Kč
                     </strong>
                     &nbsp;
-                    <span className="block text-s text-gray-700">
+                    <span className="text-s block text-gray-700">
                       {getMemberPaymentCategory(values.members, i)?.name}
                     </span>
                   </p>
                 </div>
                 {fields.length > 1 && (
                   <RemoveButton
-                    className="self-end justify-self-end mt-2 sm:mt-4"
+                    className="mt-2 self-end justify-self-end sm:mt-4"
                     onClick={() => remove(i)}
                   />
                 )}
@@ -255,7 +255,7 @@ export const App = () => {
           </div>
         ) : (
           <div
-            className={`flex w-full flex-col items-center justify-center rounded-lg border-4 border-dashed border-orange-950 border-opacity-50 p-4 text-center sm:p-10 text-xl text-orange-950`}
+            className={`flex w-full flex-col items-center justify-center rounded-lg border-4 border-dashed border-orange-950 border-opacity-50 p-4 text-center text-xl text-orange-950 sm:p-10`}
           >
             Po vyplnění všech údajů se zde zobrazí platební údaje.
           </div>
