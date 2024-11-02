@@ -13,7 +13,7 @@ export const QrCode: React.FC<QrCodeProps> = ({ data }) => {
   const MSG = getReceiverMessage(data);
 
   const paymentDescription = {
-    ACC: config.accountNumber,
+    ACC: config.iban,
     AM: getFinalPrice(data),
     RN: config.recipientName,
     CC: config.currency,

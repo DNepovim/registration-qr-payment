@@ -1,6 +1,7 @@
 import { Members } from "./model/Member";
 
 interface Config {
+  iban: string;
   accountNumber: string;
   recipientName: string;
   specificSymbol: number;
@@ -9,7 +10,8 @@ interface Config {
 }
 
 export const config: Config = {
-  accountNumber: "CZ3220100000002801050859",
+  iban: "CZ3220100000002801050859",
+  accountNumber: "2801050859/2010",
   recipientName: "Středisko Střelka",
   specificSymbol: 2025,
   currency: "CZK",
