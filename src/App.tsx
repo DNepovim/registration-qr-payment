@@ -259,6 +259,26 @@ export const App = () => {
           </div>
         )}
       </div>
+      <footer className="mt-8 pb-4 text-center text-sm text-gray-700">
+        <a
+          href="mailto:nik@skaut.cz?subject=Chyba v aplikaci registrace.sterlka.cz"
+          target="_blank"
+        >
+          Nahlásit chybu
+        </a>
+        ,{" "}
+        <a
+          href="https://github.com/DNepovim/registration-qr-payment"
+          target="_blank"
+        >
+          GitHub
+        </a>
+        , aplikaci vyrobil{" "}
+        <a href="https://www.dominikblaha.cz" target="_blank">
+          Nik
+        </a>
+        .
+      </footer>
     </main>
   );
 };
