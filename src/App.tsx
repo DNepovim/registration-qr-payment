@@ -59,7 +59,7 @@ export const App = () => {
   const isSponsor = values.members.some((m) => m.isSponsor);
 
   return (
-    <main className="prose prose-neutral h-full min-h-screen w-screen max-w-none bg-bg">
+    <main className="prose prose-neutral h-full min-h-screen w-screen max-w-none">
       <div className="mx-auto max-w-4xl rounded-md p-4">
         <h1 className="m-0 font-head text-orange-950">
           Registrace na rok 2025
