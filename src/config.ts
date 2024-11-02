@@ -10,7 +10,7 @@ interface Config {
 
 export const config: Config = {
   accountNumber: "CZ3220100000002801050859",
-  recipientName: "Střelka",
+  recipientName: "Středisko Střelka",
   specificSymbol: 2025,
   currency: "CZK",
   paymentsCategories: [

@@ -1,6 +1,11 @@
 import { FormMember } from "../App";
 import { config } from "../config";
-import { isDefaultMember, isLeaderMember, isRestMember, isSponsorMember } from "../model/Member";
+import {
+  isDefaultMember,
+  isLeaderMember,
+  isRestMember,
+  isSponsorMember,
+} from "../model/Member";
 
 export const getMemberPaymentCategory = (
   members: FormMember[],
@@ -13,7 +18,6 @@ export const getMemberPaymentCategory = (
     const leaderMember = config.paymentsCategories.find(isLeaderMember);
     return leaderMember ?? defaultMember;
   }
-
 
   if (member.isSponsor) {
     const leaderMember = config.paymentsCategories.find(isSponsorMember);
