@@ -261,7 +261,7 @@ export const App = () => {
       </div>
       <footer className="mt-8 pb-4 text-center text-sm text-gray-700">
         <a
-          href="mailto:nik@skaut.cz?subject=Chyba v aplikaci registrace.sterlka.cz"
+          href="mailto:nik@skaut.cz?subject=Chyba v aplikaci registrace.strelka.cz"
           target="_blank"
         >
           Nahlásit chybu
