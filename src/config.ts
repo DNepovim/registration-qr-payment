@@ -13,7 +13,7 @@ export const config: Config = {
   iban: "CZ3220100000002801050859",
   accountNumber: "2801050859/2010",
   recipientName: "Středisko Střelka",
-  specificSymbol: 2025,
+  specificSymbol: 2026,
   currency: "CZK",
   paymentsCategories: [
     {

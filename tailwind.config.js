@@ -9,8 +9,8 @@ export default {
         sans: ["themix", "sans-serif"],
       },
       colors: {
-        bg: "#ECDCAF",
-        container: "#657F6F",
+        bg: "#f0e6cb",
+        second: "#657F6F",
       },
     },
   },

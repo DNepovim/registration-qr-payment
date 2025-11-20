@@ -61,8 +61,8 @@ export const App = () => {
   return (
     <main className="prose prose-neutral h-full min-h-screen w-screen max-w-none bg-bg">
       <div className="mx-auto max-w-4xl rounded-md p-4">
-        <h1 className="m-0 font-head text-orange-950">
-          Registrace na rok 2025
+        <h1 className="m-0 font-head text-orange-950 text-6xl">
+          Registrace na rok 2026
         </h1>
         <p className="m-0 mb-4">
           Skautské středisko Střelka Kralupy nad Vltavou,{" "}
@@ -78,39 +78,80 @@ export const App = () => {
           </p>
           <ul className="not-prose mb-4 list-disc pl-4">
             <li>
-              povinné odvody vyšším organizačním jednotkám v rámci celostátní
-              organizace Junák - český skaut, z. s.;
+              povinné odvody vyšším organizačním jednotkám v&nbsp;rámci
+              celostátní organizace
+              Junák&nbsp;–&nbsp;český&nbsp;skaut,&nbsp;z.&nbsp;s.;
             </li>
             <li>
-              provozní náklady střediskových základen, zejména energie, údržba a
-              drobné opravy: skautský dům Bára v Kralupech, chata Dřevomorka v
-              Lužických horách a táborová základna Puchverk v Pošumaví;
+              provozní náklady střediskových základen, zejména energie, údržba
+              a&nbsp;drobné opravy: skautský dům Bára v&nbsp;Kralupech, chata
+              Dřevomorka v&nbsp;Lužických horách a&nbsp;táborová základna
+              Puchverk v&nbsp;Pošumaví;
             </li>
             <li>
-              obnova a doplnění zejména táborového vybavení (teepee, plachty na
-              kuchyň apod.) pro bezproblémové zajištění letních táborů na
-              Střele;
+              obnova a&nbsp;doplnění zejména táborového vybavení (teepee,
+              plachty na&nbsp;kuchyň apod.) pro bezproblémové zajištění letních
+              táborů na&nbsp;Střele;
             </li>
             <li>
               část celkové rekonstrukce chaty Dřevomorka jejíž předmětem je
               celková elektroinstalace, hydroizolace, nevyhovující části střechy
-              a částečně i vybavení interiéru.
+              a&nbsp;částečně i&nbsp;vybavení interiéru.
             </li>
           </ul>
         </Accordion>
         <Accordion title="Sponzorský dar">
           <p className="mt-0">
-            Vzhledem k výše zmíněné potřebě velké rekonstrukce chaty Dřevomorka,
-            kde naše oddíly tráví víkendové výpravy i Silvestrovské a
-            Velikonoční akce a slouží i jako táborová základna pro naše
-            nejmladší členy, zavádíme nově Sponzorské členství. Rekonstrukci
-            nejsme schopni ufinancovat z běžných vlastních příjmů, proto žádáme
-            o různé dotační programy a rozhodli jsme se i pro tuto formu získání
+            Vzhledem k&nbsp;výše zmíněné potřebě velké rekonstrukce chaty
+            Dřevomorka, kde naše oddíly tráví víkendové výpravy
+            i&nbsp;Silvestrovské a&nbsp;Velikonoční akce a&nbsp;slouží
+            i&nbsp;jako táborová základna pro naše nejmladší členy, zavádíme
+            nově Sponzorské členství. Rekonstrukci nejsme schopni ufinancovat
+            z&nbsp;běžných vlastních příjmů, proto žádáme o&nbsp;různé dotační
+            programy a&nbsp;rozhodli jsme se i&nbsp;pro tuto formu získání
             finančních prostředků. Zda se rozhodnete pro sponzorské členství je
-            čistě na vás, budeme za něj však velice vděčni. Samozřejmostí je
-            vystavení potvrzení o sponzorském daru, po domluvě vás rádi uvedeme
-            i na našich webových stránkách. Zároveň se můžete těšit na drobné
-            překvapení, které vám společně zašleme.
+            čistě na&nbsp;vás, budeme za&nbsp;něj však velice vděčni.
+            Samozřejmostí je vystavení potvrzení o&nbsp;sponzorském daru,
+            po&nbsp;domluvě vás rádi uvedeme i&nbsp;na&nbsp;našich webových
+            stránkách. Zároveň se můžete těšit na&nbsp;drobné překvapení, které
+            vám společně zašleme.
+          </p>
+        </Accordion>
+        <Accordion title="Výše registrace">
+          <p className="mt-0 text-lg">
+            <table className="m-0 max-w-60">
+              <tr>
+                <td>Základní</td>
+                <td>
+                  <strong>2&nbsp;000&nbsp;Kč</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Druhý z rodiny</td>
+                <td>
+                  <strong>1&nbsp;600&nbsp;Kč</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Třetí z rodiny</td>
+                <td>
+                  <strong>1&nbsp;300&nbsp;Kč</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Veodoucí</td>
+                <td>
+                  <strong>1&nbsp;000&nbsp;Kč</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Sponzor</td>
+                <td>
+                  <strong>5&nbsp;000&nbsp;Kč</strong>
+                </td>
+              </tr>
+            </table>
+            Je to složité? Využijte generátor níže.
           </p>
         </Accordion>
         <form onSubmit={handleSubmit(() => {})}>
