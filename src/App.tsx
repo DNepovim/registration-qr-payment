@@ -139,7 +139,7 @@ export const App = () => {
                 </td>
               </tr>
               <tr>
-                <td>Veodoucí</td>
+                <td>Vedoucí</td>
                 <td>
                   <strong>1&nbsp;000&nbsp;Kč</strong>
                 </td>
